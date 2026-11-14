@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#09091b">
+<title>FrameForge Studios | Official</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+:root {
+ --bg:#09091b;
+ --panel:#12132b;
+ --purple:#a855f7;
+ --blue:#38bdf8;
+ --pink:#ec4899;
+ --text:#f7f5ff;
+ --muted:#a5a4bd;
+ --border:#ffffff17;
+}
+
+* {margin:0;padding:0;box-sizing:border-box}
+
+html {scroll-behavior:smooth}
+
+body {
+ background:var(--bg);
+ color:var(--text);
+ font-family:'Outfit',sans-serif;
+ overflow-x:hidden;
+}
+
+a {text-decoration:none;color:inherit}
+button {font-family:inherit;cursor:pointer}
+
+header {
+ position:sticky;
+ top:0;
+ z-index:100;
+ background:#09091beF;
+ backdrop-filter:blur(20px);
+ border-bottom:1px solid var(--border);
+ padding:17px 7%;
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+}
+
+.logo {
+ font-size:21px;
+ font-weight:900;
+ letter-spacing:2px;
+ background:linear-gradient(90deg,#fff,#b78aff,#38bdf8);
+ background-clip:text;
+ color:transparent;
+}
+
+nav {display:flex;gap:27px}
+
+nav a {
+ color:#b9b7d2;
+ font-size:13px;
+ transition:.3s;
+}
+
+nav a:hover {color:#c084fc}
+
+.login {
+ background:linear-gradient(110deg,var(--purple),var(--blue));
+ border:0;
+ padding:11px 19px;
+ border-radius:30px;
+ color:white;
+ font-weight:700;
+}
+
+.hero {
+ min-height:650px;
+ padding:100px 8%;
+ display:flex;
+ align-items:center;
+ position:relative;
+ overflow:hidden;
+ background:
+ linear-gradient(90deg,#09091b 0%,#09091bdc 50%,#09091b55 100%),
+ linear-gradient(0deg,#09091b,transparent 60%),
+ url('https://images.unsplash.com/photo-1519608487953-e999c86e7455?w=1800')
+ center/cover;
+}
+
+.hero:before {
+ content:"";
+ position:absolute;
+ width:400px;
+ height:400px;
+ border-radius:50%;
+ background:#9333ea33;
+ filter:blur(100px);
+ top:10%;
+ right:0;
+}
+
+.hero-content {max-width:680px;position:relative}
+
+.tag {
+ display:inline-block;
+ padding:9px 16px;
+ border:1px solid #a855f766;
+ border-radius:30px;
+ color:#d8b4fe;
+ font-size:11px;
+ letter-spacing:2px;
+ margin-bottom:27px;
+ background:#a855f715;
+}
+
+.hero h1 {
+ font-size:clamp(48px,8vw,88px);
+ font-weight:900;
+ line-height:1;
+ letter-spacing:-3px;
+ margin-bottom:25px;
+}
+
+.gradient {
+ background:linear-gradient(90deg,#c084fc,#38bdf8,#f0abfc);
+ background-clip:text;
+ color:transparent;
+}
+
+.hero p {
+ color:#c0bed5;
+ max-width:510px;
+ line-height:1.9;
+ font-size:15px;
+ margin-bottom:32px;
+}
+
+.buttons {display:flex;gap:14px;flex-wrap:wrap}
+
+.primary {
+ border:0;
+ background:linear-gradient(110deg,#9333ea,#2563eb);
+ color:white;
+ padding:15px 24px;
+ border-radius:30px;
+ font-weight:700;
+ box-shadow:0 0 25px #9333ea55;
+}
+
+.secondary {
+ border:1px solid #ffffff40;
+ background:#ffffff0c;
+ color:white;
+ padding:14px 23px;
+ border-radius:30px;
+}
+
+section {padding:75px 8%}
+
+.heading {
+ display:flex;
+ justify-content:space-between;
+ align-items:end;
+ margin-bottom:30px;
+ gap:20px;
+}
+
+.heading h2 {font-size:32px;font-weight:800}
+.heading p {font-size:12px;color:var(--muted)}
+
+.movie-grid {
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:23px;
+}
+
+.movie {
+ border:1px solid var(--border);
+ background:linear-gradient(145deg,#17172f,#101020);
+ border-radius:15px;
+ overflow:hidden;
+ transition:.3s;
+}
+
+.movie:hover {
+ transform:translateY(-7px);
+ border-color:#a855f799;
+ box-shadow:0 15px 40px #9333ea20;
+}
+
+.poster {
+ height:290px;
+ position:relative;
+ background-position:center;
+ background-size:cover;
+}
+
+.poster:after {
+ content:"";
+ position:absolute;
+ inset:40% 0 0;
+ background:linear-gradient(transparent,#101020);
+}
+
+.poster span {
+ position:absolute;
+ z-index:2;
+ left:15px;
+ bottom:15px;
+ background:#9333eacc;
+ border-radius:20px;
+ padding:7px 13px;
+ font-size:10px;
+}
+
+.movie-info {padding:19px}
+
+.movie-info h3 {font-size:20px;margin-bottom:8px}
+.movie-info p {font-size:12px;color:var(--muted);line-height:1.7}
+
+.movie-meta {
+ display:flex;
+ justify-content:space-between;
+ color:#a5a4bd;
+ font-size:11px;
+ margin-top:15px;
+}
+
+.watch {
+ width:100%;
+ margin-top:17px;
+ border:0;
+ padding:12px;
+ color:white;
+ background:linear-gradient(90deg,#9333ea,#2563eb);
+ border-radius:8px;
+ font-weight:700;
+}
+
+.empty {
+ grid-column:1/-1;
+ text-align:center;
+ border:1px dashed #ffffff35;
+ border-radius:15px;
+ padding:45px 15px;
+ color:var(--muted);
+ line-height:2;
+}
+
+.search {
+ width:100%;
+ max-width:350px;
+ padding:12px 17px;
+ background:#17172e;
+ color:white;
+ border:1px solid var(--border);
+ border-radius:30px;
+ outline:none;
+}
+
+.announcement-list {display:grid;gap:15px}
+
+.announcement {
+ padding:23px;
+ border:1px solid var(--border);
+ background:linear-gradient(110deg,#17152e,#111c30);
+ border-radius:12px;
+ display:flex;
+ justify-content:space-between;
+ gap:20px;
+ align-items:center;
+}
+
+.announcement h3 {margin-bottom:8px;font-size:16px}
+.announcement p {color:var(--muted);font-size:13px;line-height:1.7}
+.announcement small {color:#c084fc;white-space:nowrap}
+
+.about {
+ text-align:center;
+ background:
+ radial-gradient(ellipse at 50% 100%,#9333ea22,transparent 65%),
+ #101020;
+ border-top:1px solid var(--border);
+ border-bottom:1px solid var(--border);
+}
+
+.about h2 {font-size:clamp(32px,5vw,55px);margin:20px 0}
+.about p {
+ color:var(--muted);
+ max-width:650px;
+ margin:auto;
+ line-height:1.9;
+ font-size:14px;
+}
+
+.stats {
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:15px;
+ margin-top:45px;
+}
+
+.stat {
+ background:#ffffff08;
+ border:1px solid var(--border);
+ border-radius:12px;
+ padding:22px 10px;
+}
+
+.stat strong {
+ display:block;
+ font-size:25px;
+ color:#c084fc;
+ margin-bottom:5px;
+}
+
+.stat span {color:var(--muted);font-size:11px}
+
+footer {
+ padding:35px 8%;
+ display:flex;
+ justify-content:space-between;
+ flex-wrap:wrap;
+ gap:20px;
+ color:var(--muted);
+ font-size:11px;
+}
+
+.modal {
+ display:none;
+ position:fixed;
+ inset:0;
+ z-index:200;
+ background:#000e;
+ align-items:center;
+ justify-content:center;
+ padding:20px;
+}
+
+.modal.show {display:flex}
+
+.modal-box {
+ width:min(850px,100%);
+ background:#12132b;
+ border:1px solid #a855f755;
+ border-radius:15px;
+ padding:25px;
+ position:relative;
+}
+
+.close {
+ position:absolute;
+ right:16px;
+ top:12px;
+ color:white;
+ background:none;
+ border:0;
+ font-size:28px;
+}
+
+video {width:100%;margin:25px 0;background:#000;max-height:65vh}
+
+@media(max-width:750px) {
+ header {padding:15px 5%}
+ nav {gap:12px}
+ nav a {font-size:10px}
+ .logo {font-size:16px}
+ .login {display:none}
+ .hero {min-height:570px;padding:80px 7%}
+ section {padding:55px 6%}
+ .movie-grid {grid-template-columns:repeat(2,1fr);gap:12px}
+ .poster {height:220px}
+ .movie-info {padding:13px}
+ .movie-info h3 {font-size:16px}
+ .announcement {flex-direction:column;align-items:flex-start}
+}
+
+@media(max-width:430px) {
+ nav {gap:8px}
+ nav a {font-size:9px}
+ .movie-grid {grid-template-columns:1fr}
+ .poster {height:300px}
+ .stats {grid-template-columns:1fr}
+ .heading {align-items:flex-start;flex-direction:column}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+ <a href="#" class="logo">FRAMEFORGE ✦</a>
+
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#movies">Movies</a>
+  <a href="#news">News</a>
+  <a href="#about">About</a>
+ </nav>
+
+ <button class="login" onclick="document.getElementById('news').scrollIntoView()">STUDIO</button>
+</header>
+
+<main>
+
+<div class="hero" id="home">
+ <div class="hero-content">
+  <div class="tag">✦ THE OFFICIAL FRAMEFORGE EXPERIENCE</div>
+
+  <h1>
+   IMAGINE.<br>
+   <span class="gradient">CREATE.</span><br>
+   INSPIRE.
+  </h1>
+
+  <p>
+   Welcome to FrameForge Studios — where original stories
+   become cinematic experiences. Explore our productions,
+   discover upcoming releases and enter our creative world.
+  </p>
+
+  <div class="buttons">
+   <a href="#movies"><button class="primary">EXPLORE MOVIES ↗</button></a>
+   <a href="#about"><button class="secondary">DISCOVER OUR STUDIO</button></a>
+  </div>
+ </div>
+</div>
+
+<section id="movies">
+ <div class="heading">
+  <div>
+   <div class="tag">THE CINEMATIC COLLECTION</div>
+   <h2>Our Movies</h2>
+  </div>
+  <input class="search" id="search" placeholder="Search productions..." oninput="renderMovies()">
+ </div>
+
+ <div class="movie-grid" id="movieGrid"></div>
+</section>
+
+<section id="news">
+ <div class="heading">
+  <div>
+   <div class="tag">WHAT'S HAPPENING</div>
+   <h2>Studio Announcements</h2>
+  </div>
+ </div>
+
+ <div class="announcement-list" id="announcementList"></div>
+</section>
+
+<section class="about" id="about">
+ <div class="tag">ABOUT FRAMEFORGE</div>
+ <h2>More than a studio.<br><span class="gradient">A creative universe.</span></h2>
+
+ <p>
+  FrameForge Studios is an independent creative production
+  studio focused on original storytelling, animation,
+  filmmaking and cinematic experiences. We believe in
+  imagination, creativity and the power of every frame.
+ </p>
+
+ <div class="stats">
+  <div class="stat">
+   <strong>01</strong>
+   <span>CREATIVE VISION</span>
+  </div>
+  <div class="stat">
+   <strong>∞</strong>
+   <span>IMAGINATION</span>
+  </div>
+  <div class="stat">
+   <strong>FF</strong>
+   <span>FRAMEFORGE STUDIOS</span>
+  </div>
+ </div>
+</section>
+
+</main>
+
+<footer>
+ <div class="logo">FRAMEFORGE ✦</div>
+ <div>© 2026 FrameForge Studios. All rights reserved.</div>
+ <div>MADE FOR STORIES.</div>
+</footer>
+
+<div class="modal" id="playerModal">
+ <div class="modal-box">
+  <button class="close" onclick="closePlayer()">×</button>
+  <h2 id="playerTitle">Now Playing</h2>
+
+  <video id="videoPlayer" controls playsinline>
+   Your browser does not support video.
+  </video>
+
+  <label>Subtitles: </label>
+  <select id="subtitleSelect" onchange="changeSubtitle()"
+   style="padding:9px;background:#222;color:white;border:1px solid #555">
+   <option value="-1">Off</option>
+  </select>
+ </div>
+</div>
+
+<script>
+
+// MOVIE DATA
+// Add your official movie details here.
+
+const movies = [];
+
+/*
+Example:
+
+movies.push({
+ title:"The Missing",
+ description:"An original FrameForge Studios production.",
+ category:"Mystery",
+ year:"2026",
+ poster:"posters/missing.jpg",
+ video:"movies/missing.mp4",
+ subtitles:[
+  {
+   language:"English",
+   code:"en",
+   file:"subtitles/english/missing.vtt"
+  },
+  {
+   language:"Hindi",
+   code:"hi",
+   file:"subtitles/hindi/missing.vtt"
+  }
+ ]
+});
+*/
+
+function renderMovies() {
+ const grid = document.getElementById('movieGrid');
+ const query = document.getElementById('search').value.toLowerCase();
+
+ const filtered = movies.filter(movie =>
+  movie.title.toLowerCase().includes(query) ||
+  movie.category.toLowerCase().includes(query)
+ );
+
+ grid.innerHTML = '';
+
+ if(filtered.length === 0) {
+  grid.innerHTML = `
+   <div class="empty">
+    <h3>THE NEXT STORY IS WAITING ✦</h3>
+    No productions found.<br>
+    Official FrameForge releases will appear here.
+   </div>`;
+  return;
+ }
+
+ filtered.forEach(movie => {
+  const card = document.createElement('article');
+  card.className = 'movie';
+
+  const poster = document.createElement('div');
+  poster.className = 'poster';
+  poster.style.backgroundImage =
+   `url("${movie.poster}")`;
+
+  const label = document.createElement('span');
+  label.textContent = movie.category;
+  poster.appendChild(label);
+
+  const info = document.createElement('div');
+  info.className = 'movie-info';
+
+  const title = document.createElement('h3');
+  title.textContent = movie.title;
+
+  const description = document.createElement('p');
+  description.textContent = movie.description;
+
+  const meta = document.createElement('div');
+  meta.className = 'movie-meta';
+  meta.textContent = 'FRAMEFORGE ORIGINAL • ' + movie.year;
+
+  const button = document.createElement('button');
+  button.className = 'watch';
+  button.textContent = '▶ WATCH NOW';
+  button.onclick = () => playMovie(movie);
+
+  info.append(title,description,meta,button);
+  card.append(poster,info);
+  grid.appendChild(card);
+ });
+}
+
+// ANNOUNCEMENTS
+
+const announcements = [
+ {
+  title:"Welcome to FrameForge Studios",
+  description:"Our official studio website is being developed. Stay tuned for upcoming productions and updates.",
+  date:"November 2026"
+ }
+];
+
+function renderAnnouncements() {
+ const list = document.getElementById('announcementList');
+ list.innerHTML = '';
+
+ announcements.forEach(item => {
+  const article = document.createElement('article');
+  article.className = 'announcement';
+
+  const content = document.createElement('div');
+  const title = document.createElement('h3');
+  const description = document.createElement('p');
+  const date = document.createElement('small');
+
+  title.textContent = item.title;
+  description.textContent = item.description;
+  date.textContent = item.date;
+
+  content.append(title,description);
+  article.append(content,date);
+  list.appendChild(article);
+ });
+}
+
+// VIDEO PLAYER
+
+function playMovie(movie) {
+ const player = document.getElementById('videoPlayer');
+ const select = document.getElementById('subtitleSelect');
+
+ document.getElementById('playerTitle').textContent = movie.title;
+
+ player.pause();
+ player.innerHTML = '';
+ player.src = movie.video;
+
+ select.innerHTML = '<option value="-1">Off</option>';
+
+ (movie.subtitles || []).forEach((sub,index) => {
+  const track = document.createElement('track');
+  track.kind = 'subtitles';
+  track.label = sub.language;
+  track.srclang = sub.code;
+  track.src = sub.file;
+  player.appendChild(track);
+
+  const option = document.createElement('option');
+  option.value = index;
+  option.textContent = sub.language;
+  select.appendChild(option);
+ });
+
+ document.getElementById('playerModal').classList.add('show');
+ player.load();
+}
+
+function changeSubtitle() {
+ const player = document.getElementById('videoPlayer');
+ const selected = Number(document.getElementById('subtitleSelect').value);
+
+ for(let i=0;i<player.textTracks.length;i++) {
+  player.textTracks[i].mode =
+   i === selected ? 'showing' : 'disabled';
+ }
+}
+
+function closePlayer() {
+ const player = document.getElementById('videoPlayer');
+ player.pause();
+ player.removeAttribute('src');
+ player.innerHTML = '';
+ player.load();
+ document.getElementById('playerModal').classList.remove('show');
+}
+
+renderMovies();
+renderAnnouncements();
+
+</script>
+
+</body>
+</html>
