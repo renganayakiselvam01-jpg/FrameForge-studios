@@ -1,0 +1,191 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FrameForge Studios | Admin</title>
+<style>
+*{box-sizing:border-box}
+body{
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#0b1020;
+ color:white;
+}
+header{
+ padding:22px;
+ background:linear-gradient(110deg,#6429d9,#087fba);
+}
+header h1{margin:0;font-size:25px}
+header p{margin:7px 0 0;color:#e5ddff}
+main{max-width:950px;margin:auto;padding:20px}
+.panel{
+ background:#151d33;
+ border:1px solid #293552;
+ border-radius:16px;
+ padding:20px;
+ margin-bottom:20px;
+}
+h2{color:#b9a0ff;margin-top:0}
+label{display:block;margin:14px 0 7px}
+input,textarea,select{
+ width:100%;
+ padding:13px;
+ border:1px solid #394766;
+ border-radius:9px;
+ background:#0b1020;
+ color:white;
+ font-size:15px;
+}
+textarea{min-height:90px;resize:vertical}
+button{
+ border:0;
+ padding:13px 18px;
+ margin-top:15px;
+ border-radius:9px;
+ background:linear-gradient(90deg,#8b5cf6,#168bd0);
+ color:white;
+ font-weight:bold;
+ cursor:pointer;
+}
+.preview{
+ background:#0b1020;
+ border-radius:10px;
+ padding:15px;
+ margin-top:15px;
+}
+.note{color:#b8c2d9;font-size:13px;line-height:1.6}
+footer{text-align:center;color:#9ba8c5;padding:20px}
+</style>
+</head>
+<body>
+
+<header>
+<h1>FRAMEFORGE STUDIOS</h1>
+<p>Studio Administration Dashboard</p>
+</header>
+
+<main>
+
+<section class="panel">
+<h2>🎬 Movie Manager</h2>
+
+<label>Movie Title</label>
+<input id="movieTitle" placeholder="Enter movie title">
+
+<label>Movie Description</label>
+<textarea id="movieDescription" placeholder="Describe your movie"></textarea>
+
+<label>Poster Image URL</label>
+<input id="posterURL" placeholder="Paste poster image link">
+
+<label>Video URL</label>
+<input id="videoURL" placeholder="Paste video link">
+
+<button onclick="previewMovie()">Preview Movie</button>
+
+<div class="preview" id="moviePreview">
+Your movie preview will appear here.
+</div>
+</section>
+
+<section class="panel">
+<h2>📢 Announcement Manager</h2>
+
+<label>Announcement Title</label>
+<input id="announcementTitle" placeholder="Enter announcement title">
+
+<label>Announcement Message</label>
+<textarea id="announcementMessage" placeholder="Write your announcement"></textarea>
+
+<button onclick="previewAnnouncement()">Preview Announcement</button>
+
+<div class="preview" id="announcementPreview">
+Your announcement preview will appear here.
+</div>
+</section>
+
+<section class="panel">
+<h2>⚙️ Dashboard Information</h2>
+<p class="note">
+This is the first dashboard interface. Movie and announcement
+previews work in this browser only. They are not published
+to the public website yet.
+</p>
+<p class="note">
+Secure administrator login, permanent storage and public
+publishing will be connected through a backend in the next stage.
+</p>
+</section>
+
+</main>
+
+<footer>© FrameForge Studios | Administration</footer>
+
+<script>
+function previewMovie(){
+ const title=document.getElementById("movieTitle").value;
+ const description=document.getElementById("movieDescription").value;
+ const poster=document.getElementById("posterURL").value;
+
+ if(!title){
+  alert("Please enter a movie title.");
+  return;
+ }
+
+ const area=document.getElementById("moviePreview");
+ area.replaceChildren();
+
+ const heading=document.createElement("h3");
+ heading.textContent=title;
+ area.appendChild(heading);
+
+ if(poster){
+  const img=document.createElement("img");
+  img.src=poster;
+  img.alt="Movie poster";
+  img.style.maxWidth="160px";
+  img.style.borderRadius="10px";
+  area.appendChild(img);
+ }
+
+ const paragraph=document.createElement("p");
+ paragraph.textContent=description;
+ area.appendChild(paragraph);
+
+ const note=document.createElement("p");
+ note.className="note";
+ note.textContent="Preview only — not published.";
+ area.appendChild(note);
+}
+
+function previewAnnouncement(){
+ const title=document.getElementById("announcementTitle").value;
+ const message=document.getElementById("announcementMessage").value;
+
+ if(!title || !message){
+  alert("Please enter an announcement title and message.");
+  return;
+ }
+
+ const area=document.getElementById("announcementPreview");
+ area.replaceChildren();
+
+ const heading=document.createElement("h3");
+ heading.textContent=title;
+ area.appendChild(heading);
+
+ const paragraph=document.createElement("p");
+ paragraph.textContent=message;
+ area.appendChild(paragraph);
+
+ const note=document.createElement("p");
+ note.className="note";
+ note.textContent="Preview only — not published.";
+ area.appendChild(note);
+}
+</script>
+
+</body>
+</html>
